@@ -1,4 +1,4 @@
-//Task 2: adding employee cards dynamically
+//Task 2: adding employee cards dynamically.
 const employeeContainer = document.getElementById("employeeContainer"); //This selects the div container for the soon-to-be employee cards
 
 
@@ -27,5 +27,12 @@ function createEmployee(name, position) { //Start by creating a function that ta
 }
 
 createEmployee("Jack", "Manager");
-createEmployee("Jack", "Manager");
-createEmployee("Jack", "Manager"); //test data
+createEmployee("Jill", "Associate");
+createEmployee("Hill", "CFO"); //test data
+
+//Task 3: converting NodeLists to arrays for bulk updates.
+const allEmployees = Array.from(document.querySelectorAll('.employee'));
+allEmployees.forEach(n => {
+    n.style.color = "green";
+    n.style.backgroundColor = "black"; //set the background of the card
+});
