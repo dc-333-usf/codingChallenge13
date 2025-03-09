@@ -21,8 +21,9 @@ function createEmployee(name, position) { //Start by creating a function that ta
     employeeContainer.appendChild(employeeCard); //add the card to the employee container
 
     const removeButton = employeeCard.querySelector('.removeButton'); //select the remove button of the card and save it as a variable
-    removeButton.addEventListener("click", () => { //add an event listener to the button, checking for when it is clicked
+    removeButton.addEventListener("click", (event) => { //add an event listener to the button, checking for when it is clicked
         employeeContainer.removeChild(employeeCard); //once it is, remove the card from the parent container
+        event.stopPropagation(); //Task 4, stop the click event from bubbling up, causing the event listener on the employee container to be triggered when the remove button is pressed
     });
 }
 
@@ -31,8 +32,13 @@ createEmployee("Jill", "Associate");
 createEmployee("Hill", "CFO"); //test data
 
 //Task 3: converting NodeLists to arrays for bulk updates.
-const allEmployees = Array.from(document.querySelectorAll('.employee'));
-allEmployees.forEach(n => {
-    n.style.color = "green";
+const allEmployees = Array.from(document.querySelectorAll('.employee')); //create an aray from all the elements with the class employee
+allEmployees.forEach(n => { //for each instance,
+    n.style.color = "green"; //change text color to green
     n.style.backgroundColor = "black"; //set the background of the card
 });
+
+//Task 4: implementing removal of employee cards with event bubbling.
+employeeContainer.addEventListener("click", () => { //add a click event listener to the employee container to tell when it is clicked
+    console.log("Parent container clicked."); //log when each click happens
+})
